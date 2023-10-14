@@ -4,10 +4,24 @@
 [BITS 16]
 global _start
 _start:
-    xchg bx, bx
     ; 设置屏幕模式为文本模式，清除屏幕
     mov ax, 3
     int 0x10
+
+    xchg bx, bx
+
+    xor ax,ax
+    xor bx,bx
+    mov ax,0
+    ; 这里是循环次数
+    mov bx,10
+    .loop1:
+        add ax,1
+        sub bx,1
+        cmp bx,0
+        je .main
+        jmp .loop1
+.main:
 
     mov     ax, 0
     mov     ss, ax
